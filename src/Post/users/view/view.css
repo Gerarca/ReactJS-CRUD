@@ -1,0 +1,60 @@
+.r-d{
+    width: 100%;
+    display: flex;
+}
+
+.r-d:hover{
+    background-color: rgba(128, 128, 128, 0.288);
+}
+
+.r-d-user, .r-d-email, .r-d-phone, .r-d-action{
+    width: 25%;
+    text-align: left;
+    font-size: 20px;
+    padding: 5px 0px 5px 10px;
+    line-height: 30px;
+}
+
+.r-d-email, .r-d-phone, .r-d-action{
+    margin-left: 5px;
+}
+
+.r-d-action{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+}
+
+.btnDelete{
+    width: 70px;
+    font-size: 15px;
+    padding: 5px;   
+    background-color: red;
+    color:#ffffff;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    margin: auto;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5) inset;
+}
+
+.btnDelete:hover {
+    background-color: rgb(0, 83, 0);
+}
+
+.btnEdit{
+    width: 70px;
+    font-size: 15px;
+    padding: 5px;   
+    background-color: orange;
+    color:#ffffff;
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    margin: auto;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5) inset;
+}
+
+.btnEdit:hover {
+    background-color: rgb(175, 115, 4);
+}
