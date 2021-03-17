@@ -22,7 +22,7 @@ class App extends Component {
 
   AddUser = (username, useremail, userphone) =>{
     const newUser = {
-      id: this.state.data.lengt,
+      id: this.state.data.length + 1,
       name: username,
       email: useremail,
       phone: userphone,      
@@ -30,7 +30,7 @@ class App extends Component {
     }
     this.setState({
       data: [...this.state.data, newUser]
-    })
+    });    
   }
 
   deleteUser = (id) =>{     
@@ -74,12 +74,13 @@ class App extends Component {
       </header>        
         <ul>
           <li> <Link style={linkStyle} to="/">Usuarios</Link> </li>
+          <li> <Link style={linkStyle} to="/add">Añadir</Link> </li>
           <li> <Link style={linkStyle} className="link" to="/search">Buscar </Link> </li>
         </ul>
         <hr />
         <Switch>
-          <Route exact path="/">
-            {
+          <Route exact path="/">            
+            { 
               this.state.showEditUser ?
               <EditUser 
                 id={this.state.id} 
@@ -93,12 +94,6 @@ class App extends Component {
               :
                 <div className="content">
                   <div className="data">
-                    <div className="addnieto"> 
-                    <FormAddUser 
-                      AddUser = {this.AddUser} 
-                      DataUsers = { this.state.data } 
-                    />
-                    </div>
                     <div className="title-list"> <h2> Usuarios </h2> </div>
                     <div className="r-title"> 
                       <div className="r-t-user">  Nombre  </div>
@@ -117,6 +112,14 @@ class App extends Component {
                   </div>
                 </div>            
               }  
+          </Route>
+          <Route path="/add">
+            <div className=""> 
+              <FormAddUser 
+                AddUser = {this.AddUser} 
+                DataUsers = { this.state.data } 
+              />
+            </div>
           </Route>
           <Route path="/search">
             <Search 

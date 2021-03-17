@@ -6,6 +6,7 @@ import EditUser from '../edit/EditUser';
 export default class Search extends Component {
 
     state = {
+        errors: {},
         data: this.props.DataUsers,
         id : '',
         name: '',
@@ -21,24 +22,50 @@ onChange = e => {
     })
 }
 
+handleValidation(){
+    let errors = {};
+    let formIsValid = true;
+
+    //Email
+    if(!this.state.email){
+      formIsValid = false;
+      errors["email"] = "Ingrese un Email valido";
+    }
+
+    if(typeof this.state.email !== "undefined"){
+      let lastAtPos = this.state.email.lastIndexOf('@');
+      let lastDotPos = this.state.email.lastIndexOf('.');
+
+      if (!(lastAtPos < lastDotPos && lastAtPos > 0 && this.state.email.indexOf('@@') === -1 && lastDotPos > 2 && (this.state.email.length - lastDotPos) > 2)) {
+        formIsValid = false;
+        errors["email"] = "Ingrese un Email valido";
+      }         
+    }
+
+    this.setState({errors: errors});
+    return formIsValid;
+  }   
+
 onSubmit = e => {   
     e.preventDefault();     
-    const UserFound = this.props.DataUsers.filter( user => user.email === this.state.email );     
-    if(UserFound.length  === 1){ 
-        this.setState({ 
-                id:UserFound[0].id, 
-                name:UserFound[0].name, 
-                email:UserFound[0].email, 
-                phone:UserFound[0].phone, 
-                found: true
-            });               
-    }else{
-        swal({
-            title: "Mensaje",
-            text: "El Correo " +this.state.email+ " no se encuentra registrado",
-            icon: "error",
-            button: "Aceptar"
-        });
+    if( this.handleValidation() ){
+        const UserFound = this.props.DataUsers.filter( user => user.email.toUpperCase()  === this.state.email.toUpperCase()  );     
+        if(UserFound.length  === 1){ 
+            this.setState({ 
+                    id:UserFound[0].id, 
+                    name:UserFound[0].name, 
+                    email:UserFound[0].email, 
+                    phone:UserFound[0].phone, 
+                    found: true
+                });               
+        }else{
+            swal({
+                title: "Mensaje",
+                text: "El Correo " +this.state.email+ " no se encuentra registrado",
+                icon: "error",
+                button: "Aceptar"
+            });
+        }
     }
 }
 
@@ -87,24 +114,34 @@ componentDidMount() {
                 {
                     this.state.edit? null
                     :
-                    <div className="b-form">                   
-                        <h2>Buscar Usuario</h2>
-                        <form onSubmit={this.onSubmit} className="form-search"> 
-                            <input  
-                                name="email"
-                                type="email" 
-                                placeholder="Escriba un Email" 
-                                onChange={this.onChange} 
-                                value={this.state.email} 
-                                required 
-                                ref={ (input) => ( this.textemail = input )}
-                            />
-                            <input 
-                                className="btnEnviar" 
-                                type="submit" 
-                                value="Buscar"                        
-                            /> 
-                        </form>
+                    <div className="content">
+                        <div className="content-form">
+                            <div className="formAddUser ">                   
+                                <h2>Buscar Usuario</h2>
+                                <form onSubmit={this.onSubmit} className="form-search"> 
+                                    <div className="campo">
+                                        <input 
+                                            className="Campoinput" 
+                                            name="email"
+                                            type="email" 
+                                            placeholder="Escriba un Email" 
+                                            onChange={this.onChange} 
+                                            value={this.state.email} 
+                                            required 
+                                            ref={ (input) => ( this.textemail = input )}
+                                        />
+                                        <span className="error">{this.state.errors["email"]}</span>                                                                
+                                    </div>
+                                    <div className="campo">
+                                        <input 
+                                            className="btnEnviar" 
+                                            type="submit" 
+                                            value="Buscar"                        
+                                        />
+                                    </div> 
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 }               
                 {

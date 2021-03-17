@@ -1,36 +1,55 @@
-.b-form{
+.content{
     width: 100%;
     height: auto;
-    display: inline;
-    justify-content: center;
-    padding: 20px 0px;
+    margin: 0 auto; 
+}
+
+.content-form{
+    width: 80%;
+    justify-content: center; 
 }
 
 .b-form div h2{
-    display: inline;
-    margin: 0px 0px 10px 0px;
-}
-
-.form-addUser{
-    width: 100%;  
-    display: flex;
+    width: 100%;
     justify-content: center;
-    text-align: center;
-    padding-top: 20px;
 }
 
-input{
-      margin-right: 20px;
-      height: 30px;
+.formAddUser{    
+    width: 50%;  
+    justify-content: center;
+    padding-top: 10px; 
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5) inset;
+}
+
+.campo{
+    width: 90%;
+    margin: auto;
+    justify-content: flex-start;
+}
+
+.Campoinput{
+      width: 100%;
+      margin: 30px 0px 10px 0px;
+      height: 40px;
       border-Radius: 5px;
       box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 1) inset;
 }
 
-.btnEnviar{
+.error{
+    width: 100%; 
+    display: flex;
+    color: red;
+    text-align: left;
+}
+
+.content .content-form .formAddUser .btnadd{
+    width: 90%;
+    margin: 30px 0px 40px 0px;
     font-size: 15px;
     font-weight: bold;
-    height: 35px;
-    width: 100px;
+    height: 35px;    
     background-color:  green;
     color: #ffffff;
     border: none;

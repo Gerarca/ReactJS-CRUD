@@ -1,7 +1,6 @@
 .b-form{
     width: 100%;
     height: auto;
-    display: inline;
     justify-content: center;
     padding: 20px 0px;
 }
@@ -14,7 +13,7 @@
 .form-search{
     width: 100%;  
     justify-content: center;
-    text-align: center;
+    padding-bottom: 30px;
 }
 
 input{
