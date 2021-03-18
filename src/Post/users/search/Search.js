@@ -10,6 +10,7 @@ export default class Search extends Component {
         data: this.props.DataUsers,
         id : '',
         name: '',
+        searchEmail: '',
         email: '',
         phone: '',
         found: false,
@@ -18,7 +19,7 @@ export default class Search extends Component {
 
 onChange = e => {
     this.setState({
-        email: e.target.value
+        searchEmail: e.target.value
     })
 }
 
@@ -27,16 +28,16 @@ handleValidation(){
     let formIsValid = true;
 
     //Email
-    if(!this.state.email){
+    if(!this.state.searchEmail){
       formIsValid = false;
       errors["email"] = "Ingrese un Email valido";
     }
 
-    if(typeof this.state.email !== "undefined"){
-      let lastAtPos = this.state.email.lastIndexOf('@');
-      let lastDotPos = this.state.email.lastIndexOf('.');
+    if(typeof this.state.searchEmail !== "undefined"){
+      let lastAtPos = this.state.searchEmail.lastIndexOf('@');
+      let lastDotPos = this.state.searchEmail.lastIndexOf('.');
 
-      if (!(lastAtPos < lastDotPos && lastAtPos > 0 && this.state.email.indexOf('@@') === -1 && lastDotPos > 2 && (this.state.email.length - lastDotPos) > 2)) {
+      if (!(lastAtPos < lastDotPos && lastAtPos > 0 && this.state.searchEmail.indexOf('@@') === -1 && lastDotPos > 2 && (this.state.searchEmail.length - lastDotPos) > 2)) {
         formIsValid = false;
         errors["email"] = "Ingrese un Email valido";
       }         
@@ -49,15 +50,15 @@ handleValidation(){
 onSubmit = e => {   
     e.preventDefault();     
     if( this.handleValidation() ){
-        const UserFound = this.props.DataUsers.filter( user => user.email.toUpperCase()  === this.state.email.toUpperCase()  );     
+        const UserFound = this.props.DataUsers.filter( user => user.email.toUpperCase()  === this.state.searchEmail.toUpperCase()  );     
         if(UserFound.length  === 1){ 
             this.setState({ 
                     id:UserFound[0].id, 
                     name:UserFound[0].name, 
-                    email:UserFound[0].email, 
-                    phone:UserFound[0].phone, 
+                    email:UserFound[0].email,                      
+                    phone:UserFound[0].phone,
                     found: true
-                });               
+                });                           
         }else{
             swal({
                 title: "Mensaje",
@@ -108,6 +109,7 @@ componentDidMount() {
     }
   }
 
+
     render() {   
         return (
             <div> 
@@ -122,11 +124,11 @@ componentDidMount() {
                                     <div className="campo">
                                         <input 
                                             className="Campoinput" 
-                                            name="email"
+                                            name="searchEmail"
                                             type="email" 
                                             placeholder="Escriba un Email" 
                                             onChange={this.onChange} 
-                                            value={this.state.email} 
+                                            value={this.state.searchEmail} 
                                             required 
                                             ref={ (input) => ( this.textemail = input )}
                                         />

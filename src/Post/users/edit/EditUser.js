@@ -96,6 +96,12 @@ export default class EditUser extends Component {
         this.setState({fields});
       }
 
+      StyleCompleted(error){
+        return{            
+            border: error? 'solid 2px red' : ''                      
+        }
+    }      
+
     render() {
         return (
             <div className="content">
@@ -105,6 +111,7 @@ export default class EditUser extends Component {
                         <div className="campo">
                             <input 
                                 className="Campoinput"
+                                style={this.StyleCompleted(this.state.errors["name"])}
                                 refs="name" 
                                 type="text" 
                                 placeholder="Ingrese un Nombre"
@@ -117,6 +124,7 @@ export default class EditUser extends Component {
                         <div className="campo">
                             <input 
                                 className="Campoinput"
+                                style={this.StyleCompleted(this.state.errors["email"])}
                                 refs="email" 
                                 type="text" 
                                 placeholder="Ingrese un Email" 
@@ -128,6 +136,7 @@ export default class EditUser extends Component {
                         <div className="campo">
                             <input 
                                 className="Campoinput"
+                                style={this.StyleCompleted(this.state.errors["phone"])}
                                 refs="phone" 
                                 id="phone"
                                 pattern="[0-9]{0,11}" 
