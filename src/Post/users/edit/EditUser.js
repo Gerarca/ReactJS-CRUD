@@ -42,10 +42,9 @@ export default class EditUser extends Component {
         }
     
         if(typeof fields["email"] !== "undefined"){
-          let lastAtPos = fields["email"].lastIndexOf('@');
-          let lastDotPos = fields["email"].lastIndexOf('.');
 
-          if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') === -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
+          let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          if (reg.test(fields["email"]) === false) {          
             formIsValid = false;
             errors["email"] = "Ingrese un Email valido";
           }
@@ -65,9 +64,9 @@ export default class EditUser extends Component {
         
         if(typeof fields["phone"] !== "undefined" ){
             let phonelenhth = fields["phone"].length;
-            if( phonelenhth < 11 ){
+            if( phonelenhth < 8 ){
                 formIsValid = false;
-                errors["phone"] = "Ingrese un numero de telefono correcto, incluyendo en codigo de la linea, debe contener 11 digitos";
+                errors["phone"] = "Ingrese un numero de telefono correcto, debe contener 8 digitos";
             }           
         }
     
@@ -139,7 +138,7 @@ export default class EditUser extends Component {
                                 style={this.StyleCompleted(this.state.errors["phone"])}
                                 refs="phone" 
                                 id="phone"
-                                pattern="[0-9]{0,11}" 
+                                pattern="[0-9]{0,8}" 
                                 placeholder="Ingrese un numero de Telefono" 
                                 onChange={this.handleChange.bind(this, "phone")} 
                                 value={this.state.fields["phone"]}

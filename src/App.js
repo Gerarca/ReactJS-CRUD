@@ -73,11 +73,10 @@ class App extends Component {
         <p> MY App LimonByte </p>
       </header>        
         <ul>
-          <li> <Link style={linkStyle} to="/">Usuarios</Link> </li>
-          <li> <Link style={linkStyle} to="/add">Añadir</Link> </li>
-          <li> <Link style={linkStyle} className="link" to="/search">Buscar </Link> </li>
-        </ul>
-        <hr />
+          <li> <Link className="link" to="/">Usuarios</Link> </li>
+          <li> <Link className="link" to="/add">Añadir</Link> </li>
+          <li> <Link className="link" to="/search">Buscar</Link> </li>
+        </ul>        
         <Switch>
           <Route exact path="/">            
             { 

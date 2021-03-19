@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-width: 1200px;
 }
 .App-logo {
   height: 10vmin;
@@ -45,18 +46,25 @@ ul {
   padding: 10px 0px;
   justify-content: flex-start;
   background-color: #0d56e7;
-  border: none;
   display: flex;
 }
 
 li{ 
-  width: 5%;
-  padding-left: 20px;  
+  width: 8%;
+  margin-right: 15px; 
 }
 
-link{
+.link{
+  margin-right: 0px;
   text-decoration: none;
+  padding: 3px 3px;
   color: #ffffff;
+  font-weight: bold;
+}
+
+.link:hover{
+  background-color: #08399c;
+  border-radius: 4px;
 }
 
 .content{
@@ -88,7 +96,7 @@ link{
   padding-top: 8px;
   padding-bottom: 8px; 
   color: #ffffff;
-  border-radius: 5px 5px 0px 0px;
+  
 }
 
 .r-t-user, .r-t-email, .r-t-phone, .r-t-action{
@@ -100,15 +108,14 @@ link{
 
 .r-data{
   width: 100%;
-  border-radius: 50px;
 }
-
 
 /*Form Add User*/
 .content{
   width: 100%;
   height: auto;
-  margin: 0 auto; 
+  margin: 0 auto;
+  margin-top: 40px; 
 }
 
 .content-form{

@@ -34,13 +34,11 @@ handleValidation(){
     }
 
     if(typeof this.state.searchEmail !== "undefined"){
-      let lastAtPos = this.state.searchEmail.lastIndexOf('@');
-      let lastDotPos = this.state.searchEmail.lastIndexOf('.');
-
-      if (!(lastAtPos < lastDotPos && lastAtPos > 0 && this.state.searchEmail.indexOf('@@') === -1 && lastDotPos > 2 && (this.state.searchEmail.length - lastDotPos) > 2)) {
-        formIsValid = false;
-        errors["email"] = "Ingrese un Email valido";
-      }         
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (reg.test(this.state.searchEmail) === false) {
+            formIsValid = false;
+            errors["email"] = "Ingrese un Email valido";
+        }         
     }
 
     this.setState({errors: errors});

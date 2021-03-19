@@ -35,14 +35,12 @@ export default class FormAddUser extends Component {
           formIsValid = false;
           errors["email"] = "Ingrese un Email";
         }
-    
+        
         if(typeof fields["email"] !== "undefined"){
-          let lastAtPos = fields["email"].lastIndexOf('@');
-          let lastDotPos = fields["email"].lastIndexOf('.');
-
-          if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') === -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
+          let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          if (reg.test(fields["email"]) === false) {
             formIsValid = false;
-            errors["email"] = "Ingrese un Email valido";
+            errors["email"] = "Ingrese un Email valido"; 
           }
           if(this.props.DataUsers.some(user => user.email.toUpperCase() === fields["email"].toUpperCase() )){            
             formIsValid = false;    
@@ -53,14 +51,14 @@ export default class FormAddUser extends Component {
         //Phone
         if(!fields["phone"]){  
           formIsValid = false;
-          errors["phone"] = "Ingrese un Numero de Telefono";
+          errors["phone"] = "Ingrese un Numero de Telefono ";
         }
         
         if(typeof fields["phone"] !== "undefined" ){
             let phonelenhth = fields["phone"].length;
-            if( phonelenhth < 11 ){
+            if( phonelenhth < 8 ){
                 formIsValid = false;
-                errors["phone"] = "Ingrese un numero de telefono correcto, incluyendo en codigo de la linea, debe contener 11 digitos";
+                errors["phone"] = "Ingrese un numero de telefono correcto, tiene que ser de 8 digitos";
             }           
         }
     
@@ -134,7 +132,7 @@ export default class FormAddUser extends Component {
                                 style={this.StyleCompleted(this.state.errors["phone"])}
                                 refs="phone" 
                                 id="phone"
-                                pattern="[0-9]{0,11}" 
+                                pattern="[0-9]{0,8}" 
                                 placeholder="Ingrese un numero de Telefono" 
                                 onChange={this.handleChange.bind(this, "phone")} 
                                 value={this.state.fields["phone"]}
